@@ -25,6 +25,16 @@
 
 ---
 
+## Phase 3 — Replace Images + Attribution
+
+- [x] **12. Replace 12 Pixabay URLs with Wikimedia Commons CC-licensed URLs in `app.js`** — one per month (Jan–Dec), each confirmed CC-licensed
+- [x] **13. Add attribution data array in `app.js`** — artist name, license, and Wikimedia Commons page link per image
+- [x] **14. Add a credit bar in `index.html`** — small `<div id="photoCredit">` below the calendar card
+- [x] **15. Wire credit bar in `app.js`** — update on every navigation to show current month's photo credit
+- [x] **16. Style the credit bar in `style.css`** — small muted text, right-aligned, unobtrusive
+
+---
+
 ## Phase 2 — Bollywood Celebrity Images
 
 - [x] **8. Add month image banner in `index.html`** — insert an `<img id="monthBanner">` between the spiral and the cal-header

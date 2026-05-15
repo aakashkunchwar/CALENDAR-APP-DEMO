@@ -1,4 +1,5 @@
 ## WORKFLOW
+
 1. Think through the problem. Write a plan in tasks/todo.md.
 2. The plan should be a checklist of todo items.
 3. Check in with me before  starting work-I'll verify the plan. 

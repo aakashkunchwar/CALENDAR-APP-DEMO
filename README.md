@@ -1,75 +1,81 @@
 # Bollywood Calendar App
 
-A lightweight, zero-dependency desk-calendar app built with plain HTML, CSS, and JavaScript. No install, no build step — just open `index.html` in a browser and it works.
+A simple, zero-dependency desk-calendar app built with plain HTML, CSS, and JavaScript. No install required — just open `index.html` in a browser and start using it.
 
 ---
 
 ## Features
 
-- **Month view** — A clean 7-column grid shows every day of the month. Days from the previous and next months are shown in muted text so the grid always fills 6 rows.
-- **Bollywood celebrity banner** — Each month displays a different Bollywood celebrity photo at the top of the calendar, sourced from Wikimedia Commons with full attribution.
-- **Add events** — Click any day to open a form. Fill in a title (required), date, optional time, and optional notes, then hit **Save**.
-- **Edit events** — Click any saved event chip to reopen the form pre-filled with its details. Change anything and save.
-- **Delete events** — When editing an event, a **Delete** button appears. One click removes it instantly.
-- **Saves automatically** — Events are stored in your browser's `localStorage`. They survive page refreshes and browser restarts — no account or internet needed.
-- **Month navigation** — Use the ← and → buttons to move between any month and year.
-- **Responsive layout** — Works on phones and tablets. The grid and modal scale down gracefully on small screens.
-- **Accessible** — Meets WCAG 2.1 AA. Fully keyboard-navigable: Tab to any day or event, Enter/Space to open it, Escape to close the modal, focus is trapped inside the modal while it's open.
+- **Monthly calendar grid** — Displays all days of the current month in a 7-column layout. Overflow days from the previous and next months fill in the edges in a lighter colour.
+- **Bollywood celebrity banner** — A different Bollywood celebrity photo appears at the top of the calendar every month, sourced from Wikimedia Commons.
+- **Photo credit** — The photographer, license, and a link to the original Wikimedia page appear below the calendar and update automatically as you navigate months.
+- **Add an event** — Click any day to open a form. Enter a title (required), date, optional time, and optional notes, then click **Save**.
+- **Edit an event** — Click any saved event label to reopen the form with its details pre-filled. Update anything and save.
+- **Delete an event** — Open any existing event and click the **Delete** button to remove it instantly.
+- **Events persist** — Everything is saved to your browser's `localStorage`, so your events survive page refreshes and browser restarts without needing an account or internet connection.
+- **Month navigation** — Use the **←** and **→** buttons in the header to move between months.
+- **Responsive design** — The layout adapts for phones and tablets.
+- **Fully keyboard accessible** — Every day cell and event is reachable and usable with just a keyboard. See the keyboard shortcuts section below.
 
 ---
 
 ## Getting Started
 
-You do not need to install anything.
+You do not need Node, npm, or any other tool.
 
-1. **Clone the project:**
+1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/aakashkunchwar/CALENDAR-APP-DEMO.git
    ```
 
 2. **Open the app:**
-   Navigate into the folder and open `index.html` in any modern browser (Chrome, Firefox, Edge, Safari).
 
    ```bash
    cd CALENDAR-APP-DEMO
-   open index.html        # macOS
-   start index.html       # Windows
    ```
 
-   That's it — the calendar loads immediately.
+   Then double-click `index.html`, or open it directly in your browser:
+
+   - **Mac:** `open index.html`
+   - **Windows:** `start index.html`
+
+The calendar loads immediately — no setup needed.
 
 ---
 
 ## How to Use
 
 ### Adding an event
-1. Click on any day cell on the calendar.
-2. A form pops up pre-filled with that date.
-3. Type a title (e.g. `Doctor appointment`).
-4. Optionally add a time and notes.
-5. Click **Save** — a small chip appears on that day.
+1. Click on any day cell in the calendar grid.
+2. A pop-up form appears, already filled in with that date.
+3. Type a title — for example, `Team meeting`.
+4. Optionally pick a time and add notes.
+5. Click **Save**. A small label appears on that day.
 
 ### Editing an event
-1. Click on the event chip directly (the coloured label on the day).
-2. The form reopens with all the existing details filled in.
-3. Make your changes and click **Save**.
+1. Click the coloured label on any day that has an event.
+2. The form reopens with all the details already filled in.
+3. Change what you need and click **Save**.
 
 ### Deleting an event
-1. Click the event chip to open the edit form.
-2. Click the **Delete** button on the bottom left.
-3. The event disappears immediately.
+1. Click the event label to open the edit form.
+2. Click the **Delete** button (bottom-left of the form).
+3. The event is removed right away.
 
-### Navigating months
-- Click **←** to go to the previous month.
-- Click **→** to go to the next month.
-- The celebrity photo and photo credit update automatically.
+### Navigating between months
+- Click **←** to go back one month.
+- Click **→** to go forward one month.
+- The celebrity photo and credit bar update automatically.
 
 ### Keyboard shortcuts
-| Key | Action |
-|-----|--------|
-| `Tab` | Move focus to the next day or event |
+
+| Key | What it does |
+|-----|-------------|
+| `Tab` | Move focus to the next day cell or event |
+| `Shift + Tab` | Move focus to the previous day cell or event |
 | `Enter` or `Space` | Open the focused day or event |
-| `Escape` | Close the modal |
+| `Escape` | Close the pop-up form |
 
 ---
 
@@ -77,14 +83,15 @@ You do not need to install anything.
 
 ```
 CALENDAR-APP-DEMO/
-├── index.html          # Page layout — calendar card, modal form, photo banner
-├── style.css           # All visual styling — grid, chips, modal, responsive design
-├── app.js              # All logic — render calendar, add/edit/delete events, localStorage
+├── index.html              # The page — calendar layout, photo banner, pop-up form
+├── style.css               # All visual styles — grid, colours, modal, responsive
+├── app.js                  # All logic — render calendar, save/edit/delete events
 ├── commands/
-│   ├── ally-check.md   # Slash command: runs an accessibility audit
-│   └── docs-helper.md  # Slash command: regenerates this README
-└── tasks/
-    └── todo.md         # Development checklist used during building
+│   ├── ally-check.md       # /ally-check  — runs an accessibility audit
+│   └── docs-helper.md      # /docs-helper — regenerates this README
+├── tasks/
+│   └── todo.md             # Development checklist (used during building)
+└── README.md               # This file
 ```
 
 ---
@@ -93,29 +100,22 @@ CALENDAR-APP-DEMO/
 
 | Layer | Technology |
 |-------|-----------|
-| Markup | HTML5 (semantic elements: `header`, `main`, `dialog`) |
-| Styles | CSS3 (Grid, Flexbox, animations, responsive breakpoints) |
-| Logic | Vanilla JavaScript (ES2020+, no frameworks) |
-| Storage | Browser `localStorage` (JSON) |
+| Markup | HTML5 |
+| Styles | CSS3 (Grid, Flexbox, animations) |
+| Logic | Vanilla JavaScript (no frameworks) |
+| Storage | Browser `localStorage` |
 | Images | Wikimedia Commons (Creative Commons licensed) |
-| IDs | `crypto.randomUUID()` (built into modern browsers) |
 
 ---
 
 ## Accessibility
 
-This app meets **WCAG 2.1 AA** standards:
+This app meets **WCAG 2.1 AA** accessibility standards:
 
-- All interactive elements (day cells, event chips, buttons) are reachable and activatable by keyboard.
-- Color contrast ratios pass 4.5:1 for all text.
-- Screen readers are notified when the month changes (`aria-live`).
-- The modal traps focus while open so keyboard users cannot accidentally tab behind it.
-- Decorative images and spiral rings are hidden from screen readers (`aria-hidden`).
-- Required form fields are marked with `required` and `aria-required`.
-- Error messages are linked to their input via `aria-describedby`.
-
----
-
-## Photo Credits
-
-Celebrity photos are sourced from [Wikimedia Commons](https://commons.wikimedia.org) under Creative Commons licenses. The photographer credit and license appear below the calendar each month.
+- Every day cell and event chip is reachable by keyboard (`Tab`) and activatable with `Enter` or `Space`.
+- The pop-up form traps focus while it is open — pressing `Tab` cycles only through the form's buttons and fields.
+- The month heading announces changes to screen readers automatically (`aria-live`).
+- All text meets a minimum 4.5:1 colour contrast ratio.
+- Required form fields are clearly marked for screen readers (`aria-required`).
+- Error messages are linked to their input fields so screen readers announce them together.
+- Decorative elements (the spiral binding, banner image) are hidden from screen readers.

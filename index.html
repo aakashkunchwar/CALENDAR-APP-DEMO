@@ -11,7 +11,7 @@
   <div class="calendar-card">
 
     <!-- Spiral binding -->
-    <div class="spiral">
+    <div class="spiral" aria-hidden="true">
       <span class="ring"></span><span class="ring"></span><span class="ring"></span>
       <span class="ring"></span><span class="ring"></span><span class="ring"></span>
       <span class="ring"></span><span class="ring"></span><span class="ring"></span>
@@ -27,7 +27,7 @@
     <!-- Header: month navigation -->
     <header class="cal-header">
       <button class="nav-btn" id="prevBtn" aria-label="Previous month">&#8592;</button>
-      <h1 class="month-label" id="monthLabel"></h1>
+      <h1 class="month-label" id="monthLabel" aria-live="polite" aria-atomic="true"></h1>
       <button class="nav-btn" id="nextBtn" aria-label="Next month">&#8594;</button>
     </header>
 
@@ -39,7 +39,7 @@
     </div>
 
     <!-- Month grid — populated by app.js -->
-    <main class="cal-grid" id="calGrid"></main>
+    <main class="cal-grid" id="calGrid" aria-label="Calendar grid"></main>
 
   </div>
 
@@ -57,13 +57,13 @@
       <form id="eventForm" novalidate>
         <div class="field">
           <label for="fieldTitle">Title <span class="required">*</span></label>
-          <input type="text" id="fieldTitle" placeholder="Event title" autocomplete="off" />
+          <input type="text" id="fieldTitle" placeholder="Event title" autocomplete="off" required aria-required="true" aria-describedby="titleError" />
           <span class="field-error" id="titleError"></span>
         </div>
 
         <div class="field">
           <label for="fieldDate">Date <span class="required">*</span></label>
-          <input type="date" id="fieldDate" />
+          <input type="date" id="fieldDate" required aria-required="true" />
         </div>
 
         <div class="field">

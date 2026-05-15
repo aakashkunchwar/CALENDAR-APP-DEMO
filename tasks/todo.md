@@ -44,6 +44,71 @@
 
 ---
 
+## Phase 4 — Accessibility (a11y) Audit
+
+### Issues found
+
+#### Critical — WCAG 2.1 AA failures
+
+| # | File | Issue | WCAG criterion |
+|---|------|-------|----------------|
+| A1 | `index.html` + `app.js` | `div.day-cell` — has click handler but no `tabindex="0"` or `role="button"`; unreachable by keyboard | 2.1.1 Keyboard |
+| A2 | `app.js` | `span.event-chip` — same problem: click-only, no keyboard access | 2.1.1 Keyboard |
+| A3 | `style.css` | `.cal-dow .dow-sun` — `#ff3d4f` on `#f2f3f8` ≈ 3.15:1; needs 4.5:1 for normal text | 1.4.3 Contrast |
+| A4 | `style.css` | `.photo-credit` / `.photo-credit a` — `#888` on `#d6dae6` ≈ 2.5:1; needs 4.5:1 | 1.4.3 Contrast |
+| A5 | `style.css` | `.day-cell.other-month .day-num` — `#c2c6d6` on `#fff` ≈ 1.67:1; needs 4.5:1 | 1.4.3 Contrast |
+| A6 | `index.html` | `#monthLabel` — no `aria-live`; month change not announced to screen readers | 4.1.3 Status Messages |
+| A7 | `index.html` | `#fieldTitle` and `#fieldDate` — missing `required` attribute and `aria-required="true"` | 1.3.1 Info & Relationships |
+| A8 | `index.html` | `#fieldTitle` — not linked to `#titleError` via `aria-describedby`; error not announced | 1.3.1 Info & Relationships |
+| A9 | `style.css` | Buttons (`.nav-btn`, `.close-btn`, `.btn-save`, `.btn-delete`) — no `:focus-visible` style | 2.4.7 Focus Visible |
+| A10 | `style.css` | Form inputs — `outline: none` on `:focus` without a robust replacement | 2.4.7 Focus Visible |
+
+#### Moderate — best practice violations
+
+| # | File | Issue |
+|---|------|-------|
+| B1 | `index.html` + `app.js` | `alt="Month photo"` is static; should name the celebrity shown each month |
+| B2 | `index.html` | `.spiral` rings — purely decorative but not `aria-hidden="true"` |
+| B3 | `index.html` | `<main id="calGrid">` — no `aria-label` to identify it as a calendar |
+| B4 | `app.js` | Day cells — accessible name is just a number; no full date for screen readers |
+| B5 | `app.js` | Modal — no focus trap; Tab can escape an open modal |
+| B6 | `style.css` | `.close-btn` — `#888` on `#fff` ≈ 3.54:1; fails 4.5:1 (button text is ~22px non-bold) |
+| B7 | `app.js` | Photo credit link opens `target="_blank"` with no accessible new-tab warning |
+
+### Fix checklist
+
+- [x] **A1** — Added `tabindex="0"`, `role="button"`, and keydown (Enter/Space) handler to each day cell in `app.js`
+- [x] **A2** — Added `tabindex="0"`, `role="button"`, and keydown handler to each event chip in `app.js`
+- [x] **A3** — Changed `.cal-dow .dow-sun` color from `#ff3d4f` to `#b91c1c` (5.85:1 on `#f2f3f8`) in `style.css`
+- [x] **A4** — Changed `.photo-credit` text color from `#888` to `#555` (5.43:1 on `#d6dae6`) in `style.css`
+- [x] **A5** — Changed `.day-cell.other-month .day-num` color from `#c2c6d6` to `#6b7280` (4.64:1 on `#f8f9fc`) in `style.css`
+- [x] **A6** — Added `aria-live="polite" aria-atomic="true"` to `#monthLabel` in `index.html`
+- [x] **A7** — Added `required aria-required="true"` to `#fieldTitle` and `#fieldDate` in `index.html`
+- [x] **A8** — Added `aria-describedby="titleError"` to `#fieldTitle` in `index.html`
+- [x] **A9** — Added `:focus-visible` outline to all four buttons in `style.css`
+- [x] **A10** — Added `input:focus-visible` block with `outline: 2px solid #12152a` in `style.css`
+- [x] **B1** — Added `celebrity` field to `MONTH_CREDITS`; `renderCalendar()` now sets `banner.alt` dynamically in `app.js`
+- [x] **B2** — Added `aria-hidden="true"` to `.spiral` div in `index.html`
+- [x] **B3** — Added `aria-label="Calendar grid"` to `<main id="calGrid">` in `index.html`
+- [x] **B4** — Each day cell now gets `aria-label` set to its full localized date string in `app.js`
+- [x] **B5** — Added Tab/Shift+Tab focus-trap logic inside modal keydown handler in `app.js`
+- [x] **B6** — Changed `.close-btn` color from `#888` to `#666` (5.74:1 on white) in `style.css`
+- [x] **B7** — Photo credit link now has `aria-label="View on Wikimedia Commons (opens in new tab)"` in `app.js`
+
+---
+
+## Review — Phase 4 (Accessibility)
+
+All 17 a11y issues fixed across 3 files:
+
+| File | Changes |
+|------|---------|
+| `index.html` | `aria-hidden` on spiral; `aria-live`+`aria-atomic` on month label; `aria-label` on calendar grid; `required`+`aria-required`+`aria-describedby` on form inputs |
+| `style.css` | 4 contrast fixes (`#b91c1c`, `#6b7280`, `#555`, `#666`); `:focus-visible` outlines on all 4 buttons; `:focus-visible` outline on all form inputs |
+| `app.js` | `celebrity` field added to `MONTH_CREDITS`; dynamic `alt` on banner; `role="button"` + `tabindex="0"` + keydown on day cells and event chips; full-date `aria-label` on day cells; Tab focus trap in modal; new-tab `aria-label` on credit link |
+
+---
+
 ## Review
 
 All 7 tasks completed in one pass. Three files created:

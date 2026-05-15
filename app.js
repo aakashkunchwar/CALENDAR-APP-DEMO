@@ -18,18 +18,18 @@ const MONTH_IMAGES = [
 ];
 
 const MONTH_CREDITS = [
-  { artist: 'Bollywood Hungama', license: 'CC BY 3.0', page: 'https://commons.wikimedia.org/wiki/File:Shah_Rukh_Khan_in_2023_(1).jpg' },
-  { artist: 'Georges Biard',     license: 'CC BY-SA 3.0', page: 'https://commons.wikimedia.org/wiki/File:Deepika_Padukone_Cannes_2018_(cropped).jpg' },
-  { artist: 'Bollywood Hungama', license: 'CC BY 3.0', page: 'https://commons.wikimedia.org/wiki/File:Priyanka_Chopra_at_Bulgary_launch,_2024_(cropped).jpg' },
-  { artist: 'Soumik (Mumbai)',   license: 'CC BY-SA 2.0', page: 'https://commons.wikimedia.org/wiki/File:Amitabh_Bachchan.jpg' },
-  { artist: 'Bollywood Hungama', license: 'CC BY 3.0', page: 'https://commons.wikimedia.org/wiki/File:Ranveer_Singh_promoting_Bajirao_Mastani.jpg' },
-  { artist: 'Elena Ternovaja',   license: 'CC BY-SA 3.0', page: 'https://commons.wikimedia.org/wiki/File:Alia_Bhatt_at_Berlinale_2022_Ausschnitt.jpg' },
-  { artist: 'Bollywood Hungama', license: 'CC BY 3.0', page: 'https://commons.wikimedia.org/wiki/File:Salman_Khan.jpg' },
-  { artist: 'Bollywood Hungama', license: 'CC BY 3.0', page: 'https://commons.wikimedia.org/wiki/File:KatrinaKaif.jpg' },
-  { artist: 'Bollywood Hungama', license: 'CC BY 3.0', page: 'https://commons.wikimedia.org/wiki/File:Deepika_Padukone_December_2015.jpg' },
-  { artist: 'Bollywood Hungama', license: 'CC BY 3.0', page: 'https://commons.wikimedia.org/wiki/File:Priyanka_Chopra_at_Filmfare_Awards_2013.jpg' },
-  { artist: 'CNX: India',        license: 'CC BY 3.0', page: 'https://commons.wikimedia.org/wiki/File:Soha_Ali_Khan_(1).jpg' },
-  { artist: 'CreativoCamaal',    license: 'CC BY 4.0', page: 'https://commons.wikimedia.org/wiki/File:Bobby_Darling_Actor.jpg' },
+  { celebrity: 'Shah Rukh Khan',    artist: 'Bollywood Hungama', license: 'CC BY 3.0',    page: 'https://commons.wikimedia.org/wiki/File:Shah_Rukh_Khan_in_2023_(1).jpg' },
+  { celebrity: 'Deepika Padukone',  artist: 'Georges Biard',     license: 'CC BY-SA 3.0', page: 'https://commons.wikimedia.org/wiki/File:Deepika_Padukone_Cannes_2018_(cropped).jpg' },
+  { celebrity: 'Priyanka Chopra',   artist: 'Bollywood Hungama', license: 'CC BY 3.0',    page: 'https://commons.wikimedia.org/wiki/File:Priyanka_Chopra_at_Bulgary_launch,_2024_(cropped).jpg' },
+  { celebrity: 'Amitabh Bachchan',  artist: 'Soumik (Mumbai)',   license: 'CC BY-SA 2.0', page: 'https://commons.wikimedia.org/wiki/File:Amitabh_Bachchan.jpg' },
+  { celebrity: 'Ranveer Singh',     artist: 'Bollywood Hungama', license: 'CC BY 3.0',    page: 'https://commons.wikimedia.org/wiki/File:Ranveer_Singh_promoting_Bajirao_Mastani.jpg' },
+  { celebrity: 'Alia Bhatt',        artist: 'Elena Ternovaja',   license: 'CC BY-SA 3.0', page: 'https://commons.wikimedia.org/wiki/File:Alia_Bhatt_at_Berlinale_2022_Ausschnitt.jpg' },
+  { celebrity: 'Salman Khan',       artist: 'Bollywood Hungama', license: 'CC BY 3.0',    page: 'https://commons.wikimedia.org/wiki/File:Salman_Khan.jpg' },
+  { celebrity: 'Katrina Kaif',      artist: 'Bollywood Hungama', license: 'CC BY 3.0',    page: 'https://commons.wikimedia.org/wiki/File:KatrinaKaif.jpg' },
+  { celebrity: 'Deepika Padukone',  artist: 'Bollywood Hungama', license: 'CC BY 3.0',    page: 'https://commons.wikimedia.org/wiki/File:Deepika_Padukone_December_2015.jpg' },
+  { celebrity: 'Priyanka Chopra',   artist: 'Bollywood Hungama', license: 'CC BY 3.0',    page: 'https://commons.wikimedia.org/wiki/File:Priyanka_Chopra_at_Filmfare_Awards_2013.jpg' },
+  { celebrity: 'Soha Ali Khan',     artist: 'CNX: India',        license: 'CC BY 3.0',    page: 'https://commons.wikimedia.org/wiki/File:Soha_Ali_Khan_(1).jpg' },
+  { celebrity: 'Bobby Darling',     artist: 'CreativoCamaal',    license: 'CC BY 4.0',    page: 'https://commons.wikimedia.org/wiki/File:Bobby_Darling_Actor.jpg' },
 ];
 
 const today = new Date();
@@ -72,10 +72,12 @@ function renderCalendar() {
   const label  = document.getElementById('monthLabel');
   grid.innerHTML = '';
   label.textContent = `${MONTHS[currentMonth]} ${currentYear}`;
-  document.getElementById('monthBanner').src = MONTH_IMAGES[currentMonth];
   const credit = MONTH_CREDITS[currentMonth];
+  const banner = document.getElementById('monthBanner');
+  banner.src = MONTH_IMAGES[currentMonth];
+  banner.alt = `${credit.celebrity} – ${MONTHS[currentMonth]} banner photo`;
   const creditEl = document.getElementById('photoCredit');
-  creditEl.innerHTML = `Photo: ${credit.artist} / <a href="${credit.page}" target="_blank" rel="noopener">Wikimedia Commons</a> / ${credit.license}`;
+  creditEl.innerHTML = `Photo: ${credit.artist} / <a href="${credit.page}" target="_blank" rel="noopener" aria-label="View on Wikimedia Commons (opens in new tab)">Wikimedia Commons</a> / ${credit.license}`;
 
   const firstDay  = new Date(currentYear, currentMonth, 1).getDay(); // 0=Sun
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -114,8 +116,17 @@ function renderCalendar() {
       cell.innerHTML = `<span class="day-num">${d}</span>`;
     }
 
+    cell.setAttribute('role', 'button');
+    cell.setAttribute('tabindex', '0');
+    const readableDate = new Date(cellDate + 'T00:00:00').toLocaleDateString('en-US', {
+      weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
+    });
+    cell.setAttribute('aria-label', readableDate);
     cell.dataset.date = cellDate;
     cell.addEventListener('click', onDayCellClick);
+    cell.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onDayCellClick(e); }
+    });
     grid.appendChild(cell);
   }
 
@@ -134,9 +145,18 @@ function renderEvents() {
     chip.className = 'event-chip';
     chip.textContent = evt.time ? `${evt.time} ${evt.title}` : evt.title;
     chip.dataset.id = evt.id;
+    chip.setAttribute('role', 'button');
+    chip.setAttribute('tabindex', '0');
     chip.addEventListener('click', e => {
       e.stopPropagation(); // don't trigger day cell click
       openModal(evt.date, evt.id);
+    });
+    chip.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        e.stopPropagation();
+        openModal(evt.date, evt.id);
+      }
     });
     cell.appendChild(chip);
   });
@@ -251,10 +271,21 @@ function init() {
     if (e.target === document.getElementById('modalOverlay')) closeModal();
   });
 
-  // Close modal on Escape key
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && !document.getElementById('modalOverlay').hidden) {
-      closeModal();
+    const overlay = document.getElementById('modalOverlay');
+    if (overlay.hidden) return;
+    if (e.key === 'Escape') { closeModal(); return; }
+    if (e.key === 'Tab') {
+      const focusable = Array.from(document.querySelector('.modal').querySelectorAll(
+        'button:not([hidden]), input, textarea'
+      ));
+      const first = focusable[0];
+      const last  = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
     }
   });
 }

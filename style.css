@@ -77,6 +77,7 @@ body {
   transition: background .15s;
 }
 .nav-btn:hover { background: rgba(255,255,255,.18); }
+.nav-btn:focus-visible { outline: 2px solid #ff3d4f; outline-offset: 2px; }
 
 /* ── Day-of-week row ──────────────────────────────────────── */
 .cal-dow {
@@ -96,7 +97,7 @@ body {
   color: #12152a;
 }
 
-.cal-dow .dow-sun { color: #ff3d4f; }
+.cal-dow .dow-sun { color: #b91c1c; }
 
 /* ── Month grid ───────────────────────────────────────────── */
 .cal-grid {
@@ -122,7 +123,7 @@ body {
 
 /* Other-month overflow days */
 .day-cell.other-month            { background: #f8f9fc; }
-.day-cell.other-month .day-num   { color: #c2c6d6; }
+.day-cell.other-month .day-num   { color: #6b7280; }
 
 /* Today */
 .day-cell.today { background: #eef0fb; }
@@ -173,11 +174,11 @@ body {
   max-width: 700px;
   margin: .4rem auto 0;
   font-size: .72rem;
-  color: #888;
+  color: #555;
   text-align: right;
   padding: 0 .25rem;
 }
-.photo-credit a { color: #888; text-underline-offset: 2px; }
+.photo-credit a { color: #555; text-underline-offset: 2px; }
 .photo-credit a:hover { color: #12152a; }
 
 /* ── Modal overlay ────────────────────────────────────────── */
@@ -221,11 +222,12 @@ body {
   border: none;
   font-size: 1.4rem;
   cursor: pointer;
-  color: #888;
+  color: #666;
   line-height: 1;
   padding: .1rem .3rem;
 }
 .close-btn:hover { color: #12152a; }
+.close-btn:focus-visible { outline: 2px solid #12152a; outline-offset: 2px; }
 
 /* ── Form fields ──────────────────────────────────────────── */
 .field {
@@ -258,6 +260,13 @@ textarea:focus {
   border-color: #12152a;
   box-shadow: 0 0 0 3px rgba(18,21,42,.1);
 }
+input[type="text"]:focus-visible,
+input[type="date"]:focus-visible,
+input[type="time"]:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #12152a;
+  outline-offset: 2px;
+}
 
 .field-error { font-size: .78rem; color: #ff3d4f; min-height: 1rem; }
 
@@ -281,6 +290,7 @@ textarea:focus {
   transition: background .15s;
 }
 .btn-save:hover { background: #2a2f52; }
+.btn-save:focus-visible { outline: 2px solid #ff3d4f; outline-offset: 2px; }
 
 .btn-delete {
   background: none;
@@ -294,6 +304,7 @@ textarea:focus {
   transition: background .15s;
 }
 .btn-delete:hover { background: #fff5f5; }
+.btn-delete:focus-visible { outline: 2px solid #ff3d4f; outline-offset: 2px; }
 
 /* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 600px) {

@@ -97,6 +97,14 @@
 
 ---
 
+## Phase 5 — Layout: Center Calendar + Credit Bar at Bottom
+
+### Checklist
+- [x] **L1** — `body`: added `flex-direction: column`, changed `align-items: flex-start` → `align-items: center`
+- [x] **L2** — `.photo-credit`: now `position: fixed; bottom: 0; left: 0; right: 0` with `rgba(214,218,230,0.92)` background
+
+---
+
 ## Review — Phase 4 (Accessibility)
 
 All 17 a11y issues fixed across 3 files:

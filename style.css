@@ -39,6 +39,13 @@ body {
   flex-shrink: 0;
 }
 
+/* ── Month image banner ───────────────────────────────────── */
+.month-banner {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 /* ── Header ───────────────────────────────────────────────── */
 .cal-header {
   display: flex;

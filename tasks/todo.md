@@ -25,6 +25,15 @@
 
 ---
 
+## Phase 2 — Bollywood Celebrity Images
+
+- [x] **8. Add month image banner in `index.html`** — insert an `<img id="monthBanner">` between the spiral and the cal-header
+- [x] **9. Add 12 Pixabay image URLs in `app.js`** — one per month (Jan–Dec), fetched via Pixabay API key
+- [x] **10. Wire banner to navigation in `app.js`** — update `renderCalendar()` to set `monthBanner.src` to the current month's image
+- [x] **11. Style the banner in `style.css`** — 180px tall (120px mobile), `object-fit: cover`, sits between spiral and month header
+
+---
+
 ## Review
 
 All 7 tasks completed in one pass. Three files created:
@@ -34,6 +43,14 @@ All 7 tasks completed in one pass. Three files created:
 | `index.html` | Semantic shell — header nav, 7-col dow labels, `#calGrid` container, hidden modal with form |
 | `style.css` | CSS Grid layout (7 cols, 42 cells), today highlight, event chips, modal overlay with slide-up animation, responsive at 600 px |
 | `app.js` | Self-contained vanilla JS: state (`currentYear/Month`, `events[]`), `renderCalendar` (6-row × 7-col grid including prev/next month overflow), `renderEvents` (injects chips), `navigate`, `openModal`/`closeModal`, `saveEvent` (upsert with title validation), `deleteEvent`, `persistEvents` (localStorage) |
+
+**Phase 2 changes (Bollywood images):**
+
+| File | Change |
+|------|--------|
+| `index.html` | Added `<img id="monthBanner" class="month-banner">` between spiral and cal-header |
+| `app.js` | Added `MONTH_IMAGES` array (12 Pixabay URLs, Jan–Dec); `renderCalendar` now sets `monthBanner.src` |
+| `style.css` | `.month-banner` — 180px height, `object-fit: cover`, 120px on mobile |
 
 **Key decisions:**
 - 42-cell grid (6 rows × 7 cols) always rendered — handles all month layouts including 5- and 6-week months.

@@ -1,6 +1,21 @@
 /* ── State ────────────────────────────────────────────────── */
 const STORAGE_KEY = 'cal_events';
 
+const MONTH_IMAGES = [
+  'https://pixabay.com/get/g261a81b317c6b5f28e8279ce28dc4c8a8bf663d041b48677355b8705ddc18e6ac79cd19d8b4673b0bf22c85e76928f73890821b2bc69531bb0c58fb3679d5b84_640.jpg',
+  'https://pixabay.com/get/g7aad369f6f7ba23035b478e85c9ce27f5e9fe9b270a787c0cf0656c7d38a07c6c230c9f140306f7740a40bfd1671e928f2250e44e0892fb69a998a99e47866b8_640.jpg',
+  'https://pixabay.com/get/g62a5d896ea8357009eb762a2e857f5e31ed0b5f546edd1ec33d8c9508a44fff8e4112c48ad436497fbdc50af208149fca1f3122cce2f0a73384df6370d59e22b_640.jpg',
+  'https://pixabay.com/get/g13a3276de994c582b71a892be25360e4147b22e219a6845c01dba702f9c0b66a7a491fa614d9ff3e66d0d1a580d71b7e5698309205456e7ca424fd7c868863c9_640.jpg',
+  'https://pixabay.com/get/gb2865ab813a5d6afbcd195848a8fe07bd1232ffac4c29a9c8cfd3bf9ab7f9fb6751b9868cd5548553838d65342be85f789bdaf3db075936bb84293a712b7d71a_640.jpg',
+  'https://pixabay.com/get/g5444708b4ebffcf1786ed94e841790345f9ccd78e9dd6207cca08152da7066022a458db0db0963feb7619cbd7262e85a9f9f117de5b364a41f560d61fe3e1056_640.jpg',
+  'https://pixabay.com/get/g36f94ffba8e2962fe3dafecdb213b7b29d5286b33461ba801f2ebdcf8d17798196b49c0c2c325ba81f5286c63a76f80e67b41dd6a40743474aa878c474a522ea_640.jpg',
+  'https://pixabay.com/get/g58851685fe2b6608f3bc92168050c71c5e4dcd0a0d73be9671ba94ccd43cf56bbb62e2af7c013d33269530daf0680e4aec68734c44b54b65b94917294eb60297_640.jpg',
+  'https://pixabay.com/get/g160e79b2582fcb13f0aa6b5c155f9aed45aeedaba46c11870c3aba0cc6bf5ab1bf2fe98f8f68e9446f8e5ad67949742a42f93e633b61061125dae0c8d35f4d43_640.jpg',
+  'https://pixabay.com/get/g31504b369a519bc5af4cf539c9e6c70adab5a9f769cc59aaa613527f76421c90fe24a06cb20821c5f7af87f4d3c530480ee64bea6a7787d16f9ac62bd86c6287_640.jpg',
+  'https://pixabay.com/get/gb804d0ed0b6e1b073d2110f468683a2e92230fd412a3f4dd8622d46ad9c8f4a79e82848c8c71c20580f6fa26f989db6c3f60cabf6d8f6c086a447c8860b7ab67_640.jpg',
+  'https://pixabay.com/get/g00410c88c7bb47fb218dcbaf6a4d4fbd2952d22f74cdf7ae4f96900448cf6d9a10e0a950d82df731d292de97f9d8f1c5_640.jpg',
+];
+
 const today = new Date();
 let currentYear  = today.getFullYear();
 let currentMonth = today.getMonth(); // 0-based
@@ -41,6 +56,7 @@ function renderCalendar() {
   const label  = document.getElementById('monthLabel');
   grid.innerHTML = '';
   label.textContent = `${MONTHS[currentMonth]} ${currentYear}`;
+  document.getElementById('monthBanner').src = MONTH_IMAGES[currentMonth];
 
   const firstDay  = new Date(currentYear, currentMonth, 1).getDay(); // 0=Sun
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();

@@ -171,15 +171,13 @@ body {
 
 /* ── Photo credit bar ─────────────────────────────────────── */
 .photo-credit {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  width: 100%;
+  max-width: 700px;
+  margin-top: .4rem;
   font-size: .72rem;
   color: #555;
   text-align: center;
-  padding: .3rem 1rem;
-  background: rgba(214, 218, 230, 0.92);
+  padding: 0 .25rem;
 }
 .photo-credit a { color: #555; text-underline-offset: 2px; }
 .photo-credit a:hover { color: #12152a; }

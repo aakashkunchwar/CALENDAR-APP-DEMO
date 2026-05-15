@@ -83,15 +83,18 @@ The calendar loads immediately — no setup needed.
 
 ```
 CALENDAR-APP-DEMO/
-├── index.html              # The page — calendar layout, photo banner, pop-up form
-├── style.css               # All visual styles — grid, colours, modal, responsive
-├── app.js                  # All logic — render calendar, save/edit/delete events
-├── commands/
-│   ├── ally-check.md       # /ally-check  — runs an accessibility audit
-│   └── docs-helper.md      # /docs-helper — regenerates this README
+├── index.html                      # The page — calendar layout, photo banner, pop-up form
+├── style.css                       # All visual styles — grid, colours, modal, responsive
+├── app.js                          # All logic — render calendar, save/edit/delete events
+├── agents/
+│   └── docs-helper-agent.md        # Agent instructions: scan app and regenerate README
+├── .claude/
+│   └── commands/
+│       ├── ally-check.md           # /ally-check  — runs an accessibility audit
+│       └── docs-helper.md          # /docs-helper — regenerates this README
 ├── tasks/
-│   └── todo.md             # Development checklist (used during building)
-└── README.md               # This file
+│   └── todo.md                     # Development checklist (used during building)
+└── README.md                       # This file
 ```
 
 ---

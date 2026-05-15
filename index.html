@@ -8,23 +8,39 @@
 </head>
 <body>
 
-  <!-- Header: month navigation -->
-  <header class="cal-header">
-    <button class="nav-btn" id="prevBtn" aria-label="Previous month">&#8592;</button>
-    <h1 class="month-label" id="monthLabel"></h1>
-    <button class="nav-btn" id="nextBtn" aria-label="Next month">&#8594;</button>
-  </header>
+  <div class="calendar-card">
 
-  <!-- Day-of-week labels -->
-  <div class="cal-dow">
-    <span>Sun</span><span>Mon</span><span>Tue</span>
-    <span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+    <!-- Spiral binding -->
+    <div class="spiral">
+      <span class="ring"></span><span class="ring"></span><span class="ring"></span>
+      <span class="ring"></span><span class="ring"></span><span class="ring"></span>
+      <span class="ring"></span><span class="ring"></span><span class="ring"></span>
+      <span class="ring"></span><span class="ring"></span><span class="ring"></span>
+      <span class="ring"></span><span class="ring"></span><span class="ring"></span>
+      <span class="ring"></span><span class="ring"></span><span class="ring"></span>
+      <span class="ring"></span><span class="ring"></span>
+    </div>
+
+    <!-- Header: month navigation -->
+    <header class="cal-header">
+      <button class="nav-btn" id="prevBtn" aria-label="Previous month">&#8592;</button>
+      <h1 class="month-label" id="monthLabel"></h1>
+      <button class="nav-btn" id="nextBtn" aria-label="Next month">&#8594;</button>
+    </header>
+
+    <!-- Day-of-week labels -->
+    <div class="cal-dow">
+      <span class="dow-sun">Sun</span>
+      <span>Mon</span><span>Tue</span><span>Wed</span>
+      <span>Thu</span><span>Fri</span><span>Sat</span>
+    </div>
+
+    <!-- Month grid — populated by app.js -->
+    <main class="cal-grid" id="calGrid"></main>
+
   </div>
 
-  <!-- Month grid — populated by app.js -->
-  <main class="cal-grid" id="calGrid"></main>
-
-  <!-- Add/Edit modal -->
+  <!-- Add/Edit modal (outside card so it overlays everything) -->
   <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
     <div class="modal">
       <div class="modal-header">

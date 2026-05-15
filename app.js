@@ -52,6 +52,7 @@ function renderCalendar() {
   for (let i = 0; i < 42; i++) {
     const cell = document.createElement('div');
     cell.className = 'day-cell';
+    if (i % 7 === 0) cell.classList.add('sunday');
 
     let cellDate;
     if (i < firstDay) {
